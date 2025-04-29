@@ -19,7 +19,7 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Docker image
@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/users-mysql-backend:latest
+          tags: ${{ secrets.DOCKER_USER }}/users-mysql-backend:latest
