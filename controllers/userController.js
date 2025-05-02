@@ -37,4 +37,26 @@ const updateUser = async (req, res) => {
     } else {
       res.status(404).json({ message: 'Usuario no encontrado' });
     }
-  } catch (
+  } catch (error) {
+    console.error('Error en updateUser:', error.message);
+    res.status(500).json({ error: 'Error al actualizar usuario' });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await db.User.destroy({ where: { id } });
+    res.status(204).end();
+  } catch (error) {
+    console.error('Error en deleteUser:', error.message);
+    res.status(500).json({ error: 'Error al eliminar usuario' });
+  }
+};
+
+module.exports = {
+  getUsers,
+  postUser,
+  updateUser,
+  deleteUser
+};
